@@ -1,0 +1,68 @@
+
+<div class="product-detail">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="slider-zoom">
+                            <a href="/image/produce/{{course.image}}" class="cloud-zoom" rel="transparentImage: 'data:image/gif;base64,R0lGODlhAQABAID/AMDAwAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==', useWrapper: false, showTitle: false, zoomWidth:'500', zoomHeight:'500', adjustY:0, adjustX:10" id="cloudZoom">
+                                <img alt="Detail Zoom thumbs image" src="/image/produce/{{course.image}}" style="width: 100%;">
+                            </a>
+                        </div>
+
+                        <div class="slider-thumbnail">
+                            <ul class="d-flex flex-wrap p-0 list-unstyled">
+                                <li>
+                                    <a href="/image/produce/{{course.image}}" rel="gallerySwitchOnMouseOver: true, popupWin:'public/img/meats.jpg', useZoom: 'cloudZoom', smallImage: 'public/img/meats.jpg'" class="cloud-zoom-gallery">
+                                        <img itemprop="image" src="/image/produce/{{course.image}}" style="width:135px;">
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/image/produce/{{course.image}}" rel="gallerySwitchOnMouseOver: true, popupWin:'public/img/fish.jpg', useZoom: 'cloudZoom', smallImage: 'public/img/fish.jpg'" class="cloud-zoom-gallery">
+                                        <img itemprop="image" src="/image/produce/{{course.image}}" style="width:135px;">
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/image/produce/{{course.image}}" rel="gallerySwitchOnMouseOver: true, popupWin:'public/img/vegetables.jpg', useZoom: 'cloudZoom', smallImage: 'public/img/vegetables.jpg'" class="cloud-zoom-gallery">
+                                        <img itemprop="image" src="/image/produce/{{course.image}}" style="width:135px;">
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+                    <div class="col-sm-6">
+                        <p>
+                            <strong>Overview</strong><br>
+                            {{course.decription}}
+                        </p>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <p>
+                                    <strong>Price</strong> (/{{course.name}})<br>
+                                    <span class="price">Rp {{course.gia}}</span>
+                                    <span class="old-price">Rp 500.000</span>
+                                </p>
+                            </div>
+                            <div class="col-sm-6 text-right">
+                                <p>
+                                    <span class="stock available">In Stock: 99</span>
+                                </p>
+                            </div>
+                        </div>
+                        <p class="mb-1">
+                            <strong>Quantity</strong>
+                        </p>
+                        <div class="row">
+                            <div class="col-sm-5">
+                                <input class="vertical-spin" type="text" data-bts-button-down-class="btn btn-primary" data-bts-button-up-class="btn btn-primary" value="" name="vertical-spin">
+                            </div>
+                            <div class="col-sm-6"><span class="pt-1 d-inline-block">{{course.name}} (1000 gram)</span></div>
+                        </div>
+
+                        <button class="mt-3 btn btn-primary btn-lg">
+                            <i class="fa fa-shopping-basket"></i> Add to Cart
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
