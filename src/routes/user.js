@@ -25,5 +25,6 @@ router.get("/reset-password", auth.isLogin, authController.getResetPass)
 
 router.post("/reset-password", auth.isLogin, authController.postResetPass)
 
+router.get("/my-products", auth.notLogin, authController.getMyProducts)
 
 module.exports = router;

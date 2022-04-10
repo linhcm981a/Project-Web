@@ -1,5 +1,7 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
+const courses = require('./Course')
+const ObjectId = Schema.Types.ObjectId
 
 const userSchema = new Schema({
     username: {
@@ -26,10 +28,11 @@ const userSchema = new Schema({
         type: String,
         required: false,
     },
-    id_courses: {
-        type: Object,
+    courses: [{
+        type: ObjectId,
+        ref: 'courses',
         required: false
-    }
+    }]
 })
 
 

@@ -1,4 +1,5 @@
 const Users = require("../models/users");
+const Course = require("../models/Course")
 var bcrypt = require("bcrypt");
 const { render } = require('express/lib/response');
 const CourseController = require('./CourseController');
@@ -180,6 +181,27 @@ class authController{
                         });
                     }
                 )
+    }
+    getMyProducts (req, res){
+        const user = Users.find({
+            _id: req.session._id
+        })
+        .lean()
+        .populate('courses')
+        .then(
+            (user)=>{
+                console.log(user)
+                console.log(user[0].courses)
+                res.render('my-products', {
+                    auth: req.session.isAuthenticated,
+                    courses: user[0].courses
+                })
+            }
+        )
+        .catch(err=>{
+            console.log(err)
+        })
+        
     }
 }
 module.exports=new authController;
