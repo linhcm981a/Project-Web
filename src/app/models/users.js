@@ -28,6 +28,15 @@ const userSchema = new Schema({
         type: String,
         required: false,
     },
+    verify_token: {
+        type: String,
+        required: false
+    },
+    auth: {
+        type: Boolean,
+        required: true,
+        default: false
+    },
     courses: [{
         type: ObjectId,
         ref: 'courses',

@@ -25,7 +25,9 @@
     "mongoose": "^6.2.9",
     "mongoose-delete": "^0.5.4",
     "mongoose-slug-generator": "^1.0.4",
+    "nodemailer": "^6.7.3",
     "prettier": "^2.6.1",
+    "randomstring": "^1.2.2",
     "react-dev-utils": "^10.0.0"
   },
   "devDependencies": {

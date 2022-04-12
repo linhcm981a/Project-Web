@@ -13,6 +13,10 @@ router.get("/register", auth.isLogin, authController.getSignUp);
 
 router.post("/register", authController.postSignUp);
 
+router.get("/verify-email", authController.getVerifyEmail)
+
+router.post("/verify-email", authController.postVerifyEmail)
+
 router.get("/change-password", auth.notLogin, authController.getChangePass)
 
 router.post('/change-password', auth.notLogin, authController.postChangePass)
@@ -21,9 +25,9 @@ router.get("/update-info", auth.notLogin, authController.getUpdate)
 
 router.post("/update-info", auth.notLogin, authController.postUpdate)
 
-router.get("/reset-password", auth.isLogin, authController.getResetPass)
+router.get("/forgot-password", auth.isLogin, authController.getResetPass)
 
-router.post("/reset-password", auth.isLogin, authController.postResetPass)
+router.post("/forgot-password", auth.isLogin, authController.postResetPass)
 
 router.get("/my-products", auth.notLogin, authController.getMyProducts)
 
