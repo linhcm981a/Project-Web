@@ -30,6 +30,7 @@ class authController{
                         var sess = req.session; 
                             sess.isAuthenticated = true;
                             sess._id = user._id;
+                            sess.auth = user.auth;
                             req.session.save((err) => {
                                 console.log(err);
                             })
@@ -55,51 +56,55 @@ class authController{
     }
 
     postSignUp (req, res){
-            const user = Users.findOne({
-                username: req.body.username
-            })
-            if(user.length > 0){
-                var status = "The username is already exists!"
-                res.render('register', {status: status})
-            }else{
-                bcrypt.hash(req.body.password, 10).then(
-                (hash) => {
-                    const user = new Users({
-                    username: req.body.username,
-                    email: req.body.email,
-                    password: hash
-                    });
-                    user.save().then(
-                    () => {
-                        var sess = req.session; 
-                            sess.isAuthenticated = true;
-                            sess._id = user._id;
-                            req.session.save((err) => {
-                                console.log(err);
-                            })
-                        var status = 'Register successful! Login now'
-                        res.redirect('verify-email')
-                    }
-                    ).catch(
-                    (error) => {
-                        res.status(500).json({
-                        error: error
-                        });
-                    }
-                    );
+            const user = Users.findOne({ $or:[
+                 {'username':req.body.username}, 
+                 {'email':req.body.email}
+            ]}).then(
+                (user)=>{
+                    if(user){
+                        var status = "The username or email is already exists!"
+                        res.render('register', {status: status})
+                    }else{
+                        bcrypt.hash(req.body.password, 10).then(
+                            (hash) => {
+                                const user = new Users({
+                                username: req.body.username,
+                                email: req.body.email,
+                                password: hash
+                                });
+                                user.save().then(
+                                () => {
+                                    var sess = req.session; 
+                                        sess.isAuthenticated = true;
+                                        sess._id = user._id;
+                                        sess.auth = user.auth;
+                                        req.session.save((err) => {
+                                            console.log(err);
+                                        })
+                                    var status = 'Register successful! Login now'
+                                    res.redirect('verify-email')
+                                }
+                                ).catch(
+                                (error) => {
+                                    res.status(500).json({
+                                    error: error
+                                    });
+                                }
+                                );
+                            }
+                            );
+                        }
                 }
-                );
-            }
+            )
     }
     getVerifyEmail (req, res, next) {
         var transporter = nodemailer.createTransport({
             service: "Gmail",
             auth: {
             user: "info.haihuynh@gmail.com",
-            pass: "3135134162"
+            pass: "sgraajknpklqknwk"
             }
         });
-        console.log(req.session._id)
         Users.findOne({ _id: req.session._id })
         .then(user => {
             var verification_token = randomstring.generate({
@@ -123,7 +128,6 @@ class authController{
             });
             user.verify_token = verification_token;
             user.save();
-            console.log(user.email)
             let email = user.email
             res.render('verify-email', {email: email})
         });
@@ -135,6 +139,7 @@ class authController{
             if (token == user.verify_token) {
             user.auth = true;
             user.save();
+            req.session.auth = user.auth;
             return res.render("home",{auth: req.session.isAuthenticated});
             } else if (token != user.verify_token) {
             return res.render("verify-email", {message: "The token is wrong, pleasure check the mail again."});
@@ -225,7 +230,7 @@ class authController{
                 service: "Gmail",
                 auth: {
                 user: "info.haihuynh@gmail.com",
-                pass: "3135134162"
+                pass: "sgraajknpklqknwk"
                 }
             });
             var tpass = randomstring.generate({

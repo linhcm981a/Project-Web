@@ -13,7 +13,7 @@ router.get("/register", auth.isLogin, authController.getSignUp);
 
 router.post("/register", authController.postSignUp);
 
-router.get("/verify-email", authController.getVerifyEmail)
+router.get("/verify-email",auth.isLogin, authController.getVerifyEmail)
 
 router.post("/verify-email", authController.postVerifyEmail)
 
@@ -29,6 +29,6 @@ router.get("/forgot-password", auth.isLogin, authController.getResetPass)
 
 router.post("/forgot-password", auth.isLogin, authController.postResetPass)
 
-router.get("/my-products", auth.notLogin, authController.getMyProducts)
+router.get("/my-products", auth.notLogin, auth.emailVerify, authController.getMyProducts)
 
 module.exports = router;
