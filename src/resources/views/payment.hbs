@@ -15,95 +15,110 @@
     <div class="row">
         <div class="col">
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#cart">Cart (<span
-                    class="total-count"></span>)</button><button class="clear-cart btn btn-danger">Clear Cart</button>
+                    class="total-count"></span>)</button>
         </div>
     </div>
-    <div class="row">
-        <div class="col">
 
-            <div class="card" style="width: 20rem;">
-                <img class="card-img-top" src="http://www.azspagirls.com/files/2010/09/orange.jpg" alt="Card image cap">
-                <div class="card-block">
-                    <h4 class="card-title">Orange</h4>
-                    <p class="card-text">Price: $0.5</p>
-                    <a href="#" data-name="Orange" data-price="0.5" class="add-to-cart btn btn-primary">Add to cart</a>
+
+    <div class="roww">
+        <div class="col-75">
+            <div class="containerr">
+                <action action="/action_page.php">
+
+                    <div class="row">
+                        <div class="col-50">
+                            <h3>Billing Address</h3>
+                            <label for="fname"><i class="fa fa-user"></i> Full Name</label>
+                            <input type="text" id="fname" name="firstname" placeholder="John M. Doe">
+                            <label for="email"><i class="fa fa-envelope"></i> Email</label>
+                            <input type="text" id="email" name="email" placeholder="john@example.com">
+                            <label for="adr"><i class="fa fa-address-card-o"></i> Address</label>
+                            <input type="text" id="adr" name="address" placeholder="542 W. 15th Street">
+                            <label for="city"><i class="fa fa-institution"></i> City</label>
+                            <input type="text" id="city" name="city" placeholder="New York">
+
+                            <div class="row">
+                                <div class="col-50">
+                                    <label for="state">State</label>
+                                    <input type="text" id="state" name="state" placeholder="NY">
+                                </div>
+                                <div class="col-50">
+                                    <label for="zip">Zip</label>
+                                    <input type="text" id="zip" name="zip" placeholder="10001">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-50">
+                            <h3>Payment</h3>
+                            <label for="fname">Accepted Cards</label>
+                            <label for="cname">Name on Card</label>
+                            <input type="text" id="cname" name="cardname" placeholder="John More Doe">
+                            <label for="ccnum">Credit card number</label>
+                            <input type="text" id="ccnum" name="cardnumber" placeholder="1111-2222-3333-4444">
+                            <label for="expmonth">Exp Month</label>
+                            <input type="text" id="expmonth" name="expmonth" placeholder="September">
+
+                            <div class="row">
+                                <div class="col-50">
+                                    <label for="expyear">Exp Year</label>
+                                    <input type="text" id="expyear" name="expyear" placeholder="2018">
+                                </div>
+                                <div class="col-50">
+                                    <label for="cvv">CVV</label>
+                                    <input type="text" id="cvv" name="cvv" placeholder="352">
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="modal-body">
+                        <h2>Total : </h2>
+                        <table class="show-cart table">
+                        </table>
+                        <div>Total price: $<span class="total-cart"></span></div>
+                    </div>
+                    <input type="submit" value="Continue to checkout" class="btn" onclick="myFunction()">
+                    </form>
+            </div>
+        </div>
+
+
+
+
+        <div class="section-content instagram-content">
+            <div class="owl-carousel owl-theme slide-instagram">
+                <div class="item">
+                    <a href="#"><img src="/image/img_intragram/1.jpg" alt="Instagram" class="img-fluid" /></a>
+                </div>
+                <div class="item">
+                    <a href="#"><img src="/image/img_intragram/2.jpg" alt="Instagram" class="img-fluid" /></a>
+                </div>
+                <div class="item">
+                    <a href="#"><img src="/image/img_intragram/3.jpg" alt="Instagram" class="img-fluid" /></a>
+                </div>
+                <div class="item">
+                    <a href="#"><img src="/image/img_intragram/4.jpg" alt="Instagram" class="img-fluid" /></a>
+                </div>
+                <div class="item">
+                    <a href="#"><img src="/image/img_intragram/5.jpg" alt="Instagram" class="img-fluid" /></a>
+                </div>
+                <div class="item">
+                    <a href="#"><img src="/image/img_intragram/6.jpg" alt="Instagram" class="img-fluid" /></a>
                 </div>
             </div>
         </div>
-        <div class="col">
-            <div class="card" style="width: 20rem;">
-                <img class="card-img-top"
-                    src="http://images.all-free-download.com/images/graphicthumb/vector_illustration_of_ripe_bananas_567893.jpg"
-                    alt="Card image cap">
-                <div class="card-block">
-                    <h4 class="card-title">Banana</h4>
-                    <p class="card-text">Price: $1.22</p>
-                    <a href="#" data-name="Banana" data-price="1.22" class="add-to-cart btn btn-primary">Add to cart</a>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="card" style="width: 20rem;">
-                <img class="card-img-top" src="https://3.imimg.com/data3/IC/JO/MY-9839190/organic-lemon-250x250.jpg"
-                    alt="Card image cap">
-                <div class="card-block">
-                    <h4 class="card-title">Lemon</h4>
-                    <p class="card-text">Price: $5</p>
-                    <a href="#" data-name="Lemon" data-price="5" class="add-to-cart btn btn-primary">Add to cart</a>
-                </div>
-            </div>
-        </div>
+        <div class="back-top" title="Go to top"><i class="fas fa-arrow-up"></i></div>
+
     </div>
-    <div class="section-content instagram-content">
-        <div class="owl-carousel owl-theme slide-instagram">
-            <div class="item">
-                <a href="#"><img src="/image/img_intragram/1.jpg" alt="Instagram" class="img-fluid" /></a>
-            </div>
-            <div class="item">
-                <a href="#"><img src="/image/img_intragram/2.jpg" alt="Instagram" class="img-fluid" /></a>
-            </div>
-            <div class="item">
-                <a href="#"><img src="/image/img_intragram/3.jpg" alt="Instagram" class="img-fluid" /></a>
-            </div>
-            <div class="item">
-                <a href="#"><img src="/image/img_intragram/4.jpg" alt="Instagram" class="img-fluid" /></a>
-            </div>
-            <div class="item">
-                <a href="#"><img src="/image/img_intragram/5.jpg" alt="Instagram" class="img-fluid" /></a>
-            </div>
-            <div class="item">
-                <a href="#"><img src="/image/img_intragram/6.jpg" alt="Instagram" class="img-fluid" /></a>
-            </div>
-        </div>
-    </div>
-    <div class="back-top" title="Go to top"><i class="fas fa-arrow-up"></i></div>
+
 
 </div>
 
 
+
+
 </div>
-
-
-<!-- Modal -->
-<div class="modal fade" id="cart" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Cart</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <table class="show-cart table">
-
-                </table>
-                <div>Total price: $<span class="total-cart"></span></div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Order now</button>
-            </div>
-        </div>
-    </div>
+</div>
+</div>
 </div>

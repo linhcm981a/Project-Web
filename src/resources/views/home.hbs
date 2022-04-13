@@ -180,13 +180,13 @@
                       <h4>
                         <a href="/courses/{{this.slug}}" class="name
                                                             hover-green">
-                          {{this.price}}
+                          {{this.name}}
                         </a>
                       </h4>
                       <span class="price"><span class="root-price
                                                             text-decoration-line-through
                                                             text-black-50"></span>
-                        {{this.gia}}
+                        {{this.price}}$
                       </span>
                       <div class="add-cart">
                         <a href="#" class="hover-green
@@ -225,7 +225,9 @@
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                  <button type="button" class="btn btn-primary">Order now</button>
+                  <a href="/payment/add" type="button" class="btn btn-primary">Order now
+                  </a>
+                  {{!-- <button type=" button" class="btn btn-primary">Order now</button> --}}
                 </div>
               </div>
             </div>
