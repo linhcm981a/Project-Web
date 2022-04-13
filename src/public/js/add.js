@@ -1,7 +1,9 @@
 // ************************************************
 // Shopping Cart API
 // ************************************************
-
+function myFunction() {
+  alert("Đặt hàng thành công!");
+}
 var shoppingCart = (function () {
   // =============================
   // Private methods and propeties
