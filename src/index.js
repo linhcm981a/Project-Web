@@ -29,6 +29,57 @@ app.engine(
     extname: ".hbs",
     helpers: {
       sum: (a, b) => a + b,
+      multiplication: (a, b) => a * b,
+        checkcurrent: (current) => {
+            if (current == 1) {
+                return true;
+            }else{
+                return false;
+            }
+        },
+        items: (current) => {
+            var i = (Number(current) > 3 ? Number(current) - 2 : 1);
+            if (i != 1) {
+                return true;
+            }
+        },
+        for: (current, pages, kq, type) => {
+            kq = []
+            var i = (Number(current) > 3 ? Number(current) - 2 : 1);
+            for (; i <= (Number(current) + 2) && i <= pages; i++) {
+                kq.push({
+                    location: i,
+                    type
+                });
+            }
+            
+            return kq;
+        },
+        for1: (current, pages, kq) => {
+            kq = []
+            var vt=0;
+            var i = (Number(current) > 3 ? Number(current) - 2 : 1);
+            for (; i <= (Number(current) + 2) && i <= pages; i++) {
+                kq[vt]=i;
+                vt++;
+            }
+            
+            return kq;
+        },
+        checklast: (current, pages) => {           
+            if ((Number(current) + 2) < pages) {
+                return true;
+            } else {
+                return false;
+            }
+        },
+        lastitems: (current, pages) => {
+            if (current == pages) {
+                return true;
+            }else{
+                return false;
+            }
+        },
     },
   })
 );

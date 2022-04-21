@@ -1,124 +1,104 @@
-{{!--
-<!-- Nav -->
-<nav class="navbar navbar-inverse bg-inverse fixed-top bg-faded">
-    <div class="row">
-        <div class="col">
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#cart">Cart (<span
-                    class="total-count"></span>)</button><button class="clear-cart btn btn-danger">Clear Cart</button>
-        </div>
-    </div>
-</nav> --}}
-
-
-<!-- Main -->
-<div class="container">
-    <div class="row">
-        <div class="col">
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#cart">Cart (<span
-                    class="total-count"></span>)</button>
-        </div>
-    </div>
-
-
-    <div class="roww">
-        <div class="col-75">
-            <div class="containerr">
-                <action action="/action_page.php">
-
-                    <div class="row">
-                        <div class="col-50">
-                            <h3>Billing Address</h3>
-                            <label for="fname"><i class="fa fa-user"></i> Full Name</label>
-                            <input type="text" id="fname" name="firstname" placeholder="John M. Doe">
-                            <label for="email"><i class="fa fa-envelope"></i> Email</label>
-                            <input type="text" id="email" name="email" placeholder="john@example.com">
-                            <label for="adr"><i class="fa fa-address-card-o"></i> Address</label>
-                            <input type="text" id="adr" name="address" placeholder="542 W. 15th Street">
-                            <label for="city"><i class="fa fa-institution"></i> City</label>
-                            <input type="text" id="city" name="city" placeholder="New York">
-
-                            <div class="row">
-                                <div class="col-50">
-                                    <label for="state">State</label>
-                                    <input type="text" id="state" name="state" placeholder="NY">
-                                </div>
-                                <div class="col-50">
-                                    <label for="zip">Zip</label>
-                                    <input type="text" id="zip" name="zip" placeholder="10001">
+<div class="page-header">
+    <section id="checkout">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-7">
+                    <h5 class="mb-3">BILLING DETAILS</h5>
+                    <!-- Bill Detail of the Page -->
+                    <form method="post" action="/payment/add" class="bill-detail">
+                        <fieldset>
+                            <div class="form-group row">
+                                <div class="col">
+                                    <input id="name" name="name" class="form-control" placeholder="Name" type="text" required>
                                 </div>
                             </div>
-                        </div>
-
-                        <div class="col-50">
-                            <h3>Payment</h3>
-                            <label for="fname">Accepted Cards</label>
-                            <label for="cname">Name on Card</label>
-                            <input type="text" id="cname" name="cardname" placeholder="John More Doe">
-                            <label for="ccnum">Credit card number</label>
-                            <input type="text" id="ccnum" name="cardnumber" placeholder="1111-2222-3333-4444">
-                            <label for="expmonth">Exp Month</label>
-                            <input type="text" id="expmonth" name="expmonth" placeholder="September">
-
-                            <div class="row">
-                                <div class="col-50">
-                                    <label for="expyear">Exp Year</label>
-                                    <input type="text" id="expyear" name="expyear" placeholder="2018">
+                            <div class="form-group">
+                                <textarea id="address" name="address" class="form-control" placeholder="Address" required></textarea>
+                            </div>
+                            <div class="form-group">
+                                <input id="Country" name="Country" class="form-control" placeholder="State / Country" type="text" required>
+                            </div>
+                            <div class="form-group">
+                                <input id="theother" name="theother" class="form-control" placeholder="The other sign " type="text" required>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col">
+                                    <input id="email" name="email" class="form-control" placeholder="Email Address" type="email" required>
                                 </div>
-                                <div class="col-50">
-                                    <label for="cvv">CVV</label>
-                                    <input type="text" id="cvv" name="cvv" placeholder="352">
+                                <div class="col">
+                                    <input id="phone" name="phone" class="form-control" placeholder="Phone Number" type="tel" required>
                                 </div>
                             </div>
-                        </div>
+                            <div class="form-group">
+                                <textarea id="notes" name="notes" class="form-control" placeholder="Order Notes" required></textarea>
+                            </div>
+                        </fieldset>
+                    </div>
+                        <!-- Bill Detail of the Page end -->
+                        <div class="col-xs-12 col-sm-5">
+                            <div class="holder">
+                                <h5 class="mb-3">YOUR ORDER</h5>
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>Products</th>
+                                                <th>Price</th>
+                                                <th class="text-right">Subtotal</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {{#each cart}}
+                                            <tr>
+                                                <td>
+                                                    <input id="products" name="products" type="text" value="{{name}}">
+                                                </td>
+                                                <td>
+                                                    {{gia}}
+                                                </td>
+                                                <td class="text-right">
+                                                    {{qty}}
+                                                </td>
+                                            </tr>
+                                            {{/each}}
+                                        </tbody>
+                                        <tfooter>
+                                            <tr>
+                                                <td>
+                                                    <strong>Cart Subtotal</strong>
+                                                </td>
+                                                <td class="text-right">
+                                                    {{{total}}}
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <strong>Shipping</strong>
+                                                </td>
+                                                <td class="text-right">
+                                                    Rp 40.000
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <strong>ORDER TOTAL</strong>
+                                                </td>
+                                                <td class="text-right">
+                                                    <input id="ordertotal" name="ordertotal" type="text" value="{{{TotalS}}}">
+                                                </td>
+                                            </tr>
+                                        </tfooter>
+                                    </table>
+                                </div>
 
-                    </div>
-                    <div class="modal-body">
-                        <h2>Total : </h2>
-                        <table class="show-cart table">
-                        </table>
-                        <div>Total price: $<span class="total-cart"></span></div>
-                    </div>
-                    <input type="submit" value="Continue to checkout" class="btn" onclick="myFunction()">
+                                <h5 class="mb-3">PAYMENT METHODS</h5>
+                                <button type="submit" class="btn btn-primary float-right">Order now <i
+                                        class="fa fa-check"></i></button>
+                                <div class="clearfix">
                     </form>
+            
             </div>
         </div>
-
-
-
-
-        <div class="section-content instagram-content">
-            <div class="owl-carousel owl-theme slide-instagram">
-                <div class="item">
-                    <a href="#"><img src="/image/img_intragram/1.jpg" alt="Instagram" class="img-fluid" /></a>
-                </div>
-                <div class="item">
-                    <a href="#"><img src="/image/img_intragram/2.jpg" alt="Instagram" class="img-fluid" /></a>
-                </div>
-                <div class="item">
-                    <a href="#"><img src="/image/img_intragram/3.jpg" alt="Instagram" class="img-fluid" /></a>
-                </div>
-                <div class="item">
-                    <a href="#"><img src="/image/img_intragram/4.jpg" alt="Instagram" class="img-fluid" /></a>
-                </div>
-                <div class="item">
-                    <a href="#"><img src="/image/img_intragram/5.jpg" alt="Instagram" class="img-fluid" /></a>
-                </div>
-                <div class="item">
-                    <a href="#"><img src="/image/img_intragram/6.jpg" alt="Instagram" class="img-fluid" /></a>
-                </div>
-            </div>
-        </div>
-        <div class="back-top" title="Go to top"><i class="fas fa-arrow-up"></i></div>
-
-    </div>
-
-
 </div>
-
-
-
-
-</div>
-</div>
-</div>
+</section>
 </div>

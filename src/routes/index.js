@@ -4,13 +4,18 @@ const coursesRouter = require("./courses");
 const siteRouter = require("./site");
 const userRouter = require("./user");
 const paymentRouter = require("./payment");
+const dgRouter = require("./dg")
+const cartsRouter = require("./cart")
 function route(app) {
-  app.use("/news", newsRouter);
+  app.use("/users", userRouter);
+  app.use("/carts", cartsRouter);
   app.use("/me", meRouter);
   app.use("/courses", coursesRouter);
-  app.use("/", siteRouter);
-  app.use("/users", userRouter);
   app.use("/payment", paymentRouter);
+  app.use('/dg',dgRouter);
+  app.use("/news", newsRouter);
+  app.use("/", siteRouter);
+ 
 }
 
 module.exports = route;

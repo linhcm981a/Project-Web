@@ -10,7 +10,9 @@ const Course = new Schema(
     name: { type: String, require: true },
     decription: { type: String, maxLength: 600 },
     image: { type: String, maxLength: 255 },
-    price: { type: String, maxLength: 255 },
+    gia: { type: String, maxLength: 255 },
+    total: { type: String, maxLength: 255 },
+    pricenow: { type: String, maxLength: 255 },
     slug: { type: String, slug: "name", unique: true },
   },
   {
@@ -25,4 +27,6 @@ Course.plugin(mongooseDelete, {
   overrideMethods: "all",
 });
 
-module.exports = mongoose.model("Course", Course);
+
+module.exports=mongoose.model('courses',Course); 
+

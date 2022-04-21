@@ -7,7 +7,17 @@ class CourseController{
     show(req,res,next){
         Course.findOne({slug:req.params.slug})
             .then(course=>{
-                res.render('courses/show',{course:mongooseToObject(course)});
+                var quantity;
+                var cart = req.session.cart;
+                if (req.session.cart) {
+                    quantity = cart.length;
+                } else {
+                    quantity = 0;
+                }   
+                res.render('courses/show',{
+                    course:mongooseToObject(course),
+                    quantity
+                });
             })
             .catch(next);
     }
@@ -39,10 +49,20 @@ class CourseController{
 
      //put/courses/:id
     update(req,res,next){
-        Course.updateOne({_id:req.params.id},req.body)
-            .then(()=>res.redirect('/me/stored/courses'))
-            .catch(next);
-    }
+        // Course.updateOne({_id:req.params.id},req.body)
+        //     .then(()=>res.redirect('/me/stored/courses'))
+        //     .catch(next);
+        Course.findOne({_id:req.params.id})
+            .then(course=>{
+                if(req.body.image ==''){
+                    req.body.image == course.image;
+                }
+                Course.updateOne({_id:req.params.id},req.body)
+                    .then(()=>res.redirect('/me/stored/courses'))
+                    .catch(next);
+            })
+            
+        }
 
     //delete/courses/:id
     destroy(req,res,next){
@@ -63,6 +83,37 @@ class CourseController{
         Course.restore({ _id: req.params.id })
             .then(() => res.redirect('back'))
             .catch(next);
+    }
+
+    //post/courses/handle-form-actions
+    handleFormActions(req, res, next) {
+        switch(req.body.action){
+            case 'delete':
+                Course.delete({ _id:{$in:req.body.courseIds}})
+                    .then(()=>res.redirect('back'))
+                    .catch(next);
+                break;
+            default:
+                res.json({message:'action is invalid'});
+        }
+    }
+
+    //post/courses/handle-form-delete-actions
+    handleFormDActions(req, res, next) {
+        switch(req.body.action){
+            case 'delete':
+                Course.deleteOne({ _id:{$in:req.body.courseIds}})
+                    .then(()=>res.redirect('back'))
+                    .catch(next);
+                break;
+            case 'restore':
+                Course.restore({ _id:{$in:req.body.courseIds}})
+                    .then(()=>res.redirect('back'))
+                    .catch(next);
+                break;
+            default:
+                res.json({message:'action is invalid'});
+        }
     }
 
 }
